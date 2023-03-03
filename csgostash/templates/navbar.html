@@ -1,5 +1,30 @@
 {% load static %}
 
-<a href='/'>
-    <img src="{% static 'images/amigos.jpg' %}">
-</a>
+<div class = "header-container">    
+
+    <div class = "logo-image-container">
+        <a href='/'>      
+            <img class = "logo-image" src="{% static 'images/csgo.jpg' %}">
+        </a> 
+    </div>
+
+    <div class = "header-text-container">
+        <div class = "upper-part">
+            <h1 class = "header-text"> Welcome to our site!</h1>
+        </div>
+        <div class = "lower-part">
+            <button onclick="location.href = '/home/csgo/ak47';" class = "skin-category" type="button">Rifles</button>
+            <button class = "skin-category" type="button">Knives</button>
+            <button class = "skin-category" type="button">Pistols</button>
+            <button class = "skin-category" type="button">SMG</button>
+            <button class = "skin-category" type="button">Cases</button>
+            <button class = "skin-category" type="button">Stickers</button>
+            <button class = "skin-category" type="button">Heavy</button>
+            
+        </div>
+    </div>  
+
+</div>
+
+<hr>
+

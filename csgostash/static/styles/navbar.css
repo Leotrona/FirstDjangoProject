@@ -1,0 +1,50 @@
+.logo-image {
+    border-radius: 100px ;
+    display: block;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+
+}
+
+.header-text {
+    display: inline-block;
+}
+
+.upper-part {
+    padding-left: 35%;
+    vertical-align: middle;
+    padding-top: 15px;
+}
+
+.logo-image-container {
+    text-align: center;
+    align-items: center;
+}
+
+.lower-part{
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(7, 100px);
+    padding-left: 23%;
+}
+
+a {
+    display: inline-block;
+    text-align: left;
+    align-items: center;
+}
+
+.skin-category {
+    width: 100px;
+}
+
+button:hover{
+    cursor: pointer !important;
+    
+}
