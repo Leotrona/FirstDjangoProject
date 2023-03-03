@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <style>
+            body {
+                background-color: aquamarine;
+                color: black;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        {% include 'navbar.html' %}
+
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+</html>
