@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div class  = "container" >   
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/stickers/astralis.jpeg' %}">
+        </a>
+        <h1>Astralis Stockholm 2021</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/stickers/cerq.jpeg' %}">
+        </a>
+        <h1>CeRq Berlin 2019</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/stickers/nip.jpeg' %}">
+        </a>
+        <h1>Ninjas in Pyjamas Rio 2021</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/stickers/s1mple.jpeg' %}">
+        </a>
+        <h1>s1mple Rio 2022</h1>
+    </div>
+</div>
+
+{% endblock content %}
