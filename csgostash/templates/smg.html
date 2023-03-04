@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div class  = "container" >   
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/smg/bizon.jpeg' %}">
+        </a>
+        <h1>Bizon</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/smg/mac10.jpeg' %}">
+        </a>
+        <h1>Mac-10</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/smg/mp5.jpeg' %}">
+        </a>
+        <h1>MP5-SD</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/smg/mp9.jpeg' %}">
+        </a>
+        <h1>MP9</h1>
+    </div>
+</div>
+
+{% endblock content %}
