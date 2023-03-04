@@ -30,8 +30,8 @@
 .lower-part{
     color: white;
     display: grid;
-    grid-template-columns: repeat(7, 100px);
-    padding-left: 23%;
+    grid-template-columns: repeat(7, 150px);
+    padding-left: 15%;
 }
 
 a {
@@ -40,11 +40,11 @@ a {
     align-items: center;
 }
 
-.skin-category {
-    width: 100px;
-}
-
 button:hover{
     cursor: pointer !important;
     
+}
+
+.skin-category {
+    font-size: 20px;
 }

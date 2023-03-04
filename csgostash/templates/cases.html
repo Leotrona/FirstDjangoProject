@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div class  = "container" >   
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/cases/dreams.jpeg' %}">
+        </a>
+        <h1>Dreams & Nightmares Case</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/cases/revolution.jpeg' %}">
+        </a>
+        <h1>Revolution Case</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/cases/souvenir.jpeg' %}">
+        </a>
+        <h1>Souvenir Stockholm 2018</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/cases/weapon.jpeg' %}">
+        </a>
+        <h1>Weapon Case</h1>
+    </div>
+</div>
+
+{% endblock content %}
