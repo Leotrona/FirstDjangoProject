@@ -30,8 +30,13 @@
 .lower-part{
     color: white;
     display: grid;
-    grid-template-columns: repeat(7, 150px);
+    grid-template-columns: repeat(7, 1fr);
     padding-left: 15%;
+    padding-right: 10%;
+}
+
+.skin-category {
+    max-width: 150px;
 }
 
 a {
@@ -41,10 +46,34 @@ a {
 }
 
 button:hover{
-    cursor: pointer !important;
-    
+    cursor: pointer !important; 
 }
 
 .skin-category {
     font-size: 20px;
+}
+
+@media (max-width: 850px) {
+    .lower-part{
+        color: white;
+        display: grid;
+        grid-template-columns: 150px;
+        grid-template-rows: repeat(7, 20px);
+        padding-left: 28%;
+        padding-right: 0%;
+        align-items: center;
+    }
+
+    .skin-category {
+        font-size: 15px;
+    }
+
+    .upper-part {
+        padding-left: 30%;
+    }
+
+    .logo-image {
+        max-height: 0px;
+    }
+
 }
