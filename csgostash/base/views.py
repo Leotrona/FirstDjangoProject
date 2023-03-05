@@ -26,3 +26,6 @@ def stickers(request):
 
 def heavy(request):
     return render(request, 'heavy.html')
+
+def gloves(request):
+    return render(request, 'gloves.html')
