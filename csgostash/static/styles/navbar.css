@@ -30,19 +30,9 @@
 .lower-part{
     color: white;
     display: grid;
-<<<<<<< HEAD
     grid-template-columns: repeat(8, 1fr);
     padding-left: 12%;
     padding-right: 10%;
-=======
-    grid-template-columns: repeat(7, 1fr);
-    padding-left: 15%;
-    padding-right: 10%;
-}
-
-.skin-category {
-    max-width: 150px;
->>>>>>> 21c9a5ef4ec5303cb84636559eacc058e36afb97
 }
 
 
@@ -65,11 +55,7 @@ button:hover{
         color: white;
         display: grid;
         grid-template-columns: 150px;
-<<<<<<< HEAD
         grid-template-rows: repeat(8, 20px);
-=======
-        grid-template-rows: repeat(7, 20px);
->>>>>>> 21c9a5ef4ec5303cb84636559eacc058e36afb97
         padding-left: 28%;
         padding-right: 0%;
         align-items: center;
@@ -87,8 +73,4 @@ button:hover{
         max-height: 0px;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 21c9a5ef4ec5303cb84636559eacc058e36afb97
