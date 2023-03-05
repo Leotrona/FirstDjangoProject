@@ -11,6 +11,7 @@ urlpatterns = [
     path('cases/', views.cases, name="cases"),
     path('stickers/', views.stickers, name="stickers"),
     path('heavy/', views.heavy, name="heavy"),
-     
+    path('gloves/', views.gloves, name="gloves"),
+  
 ]
 

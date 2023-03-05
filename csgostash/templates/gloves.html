@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div class  = "container" >   
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/gloves/driver.jpeg' %}">
+        </a>
+        <h1>Driver Gloves</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/gloves/moto.jpeg' %}">
+        </a>
+        <h1>Moto Gloves</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/gloves/specialist.jpeg' %}">
+        </a>
+        <h1>Specialist Gloves</h1>
+    </div>
+    <div class = "content">
+        <a href='/'>      
+            <img class = "weapon-image" src="{% static 'images/gloves/sport.jpeg' %}">
+        </a>
+        <h1>Sport Gloves</h1>
+    </div>
+</div>
+
+{% endblock content %}
