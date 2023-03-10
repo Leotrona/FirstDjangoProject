@@ -12,6 +12,7 @@ urlpatterns = [
     path('stickers/', views.stickers, name="stickers"),
     path('heavy/', views.heavy, name="heavy"),
     path('gloves/', views.gloves, name="gloves"),
-  
-]
+    path('rifles/ak47', views.ak47, name="ak47"),
+    path('rifle/ak47/<int:id', views.current_rifle, name="current_rifle"),
 
+]
