@@ -6,7 +6,13 @@
 {% block content %}
 
 <div> 
-    <h1>{{job_title}}</h1>    
+    <div>
+        {% for weapon in weapons %}
+            <div>
+                <h1>{{weapon.id}} --<a href="/rifles/ak47/{{weapon.id}}">{{weapon.skin_name}}</a></h1>
+            </div>
+        {% endfor %}
+    </div>    
 </div>
 
 
