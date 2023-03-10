@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Weapon
 # Create your views here.
 
 job_title = [
@@ -38,14 +39,14 @@ def gloves(request):
 
 def ak47(request):
     try:
-        # return_html = f"<h1>{job_title[id]}</h1> <h3>{job_description[id]}</h3"
-        # return HttpResponse(return_html)
-        context = {'job_title': job_title}
+        weapons = Weapon.objects.all()
+        context = {'weapons': weapons}
         return render(request, 'ak47.html', context)
     except:
         return render("Item not found!")
-    return render(request, 'ak47.html')
 
-def current_rifle(request):
-    return render(request, 'current_rifle.html')
+def current_rifle(request, pk):
+    weapon_from_database = Weapon.objects.get(id=pk)
+    context = {'weapon': weapon_from_database}
+    return render(request, 'current_rifle.html', context)
 
