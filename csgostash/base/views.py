@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Weapon
 from django.http import HttpResponseNotFound
+from .forms import WeaponForm
 
 # Create your views here.
 
@@ -38,8 +39,7 @@ def existing_skins(request, weapon):
             return HttpResponseNotFound("Item not found!")
         
         weapons = Weapon.objects.filter(skin_name__icontains = weapon)
-        weapon_name = weapons[0].skin_name.split("|")[0]
-        context = {'weapons': weapons, 'weapon_name': weapon_name}
+        context = {'weapons': weapons, 'weapon_name': weapon}
         return render(request, 'existing_skins.html', context)
     
 
@@ -53,5 +53,34 @@ def current_rifle(request,weapon, pk):
 
 
 def sell_item(request):
-     context = {}
-     return render(request, "sell.html", context)
+    form = WeaponForm()
+    if request.method == 'POST':
+        form = WeaponForm(request.POST)
+        if form.is_valid():
+             form.save()
+             return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'sell.html', context)
+
+
+def update_item(request, pk):
+    weapon = Weapon.objects.get(id=pk)
+    form = WeaponForm(instance=weapon)
+
+    if request.method == 'POST':
+        form = WeaponForm(request.POST, instance=weapon)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'sell.html', context)
+
+
+def delete_item(request, pk):
+    item = Weapon.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('home')
+    return render(request, 'delete.html', {'obj':item})
