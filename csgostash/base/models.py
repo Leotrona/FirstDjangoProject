@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Ak47(models.Model):
@@ -26,7 +26,7 @@ WEAPON_TYPES = (
 
 
 class Weapon(models.Model):
-    #seller =
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     weapon_type = models.CharField(max_length=6, choices=WEAPON_TYPES, default='green')
     skin_name = models.CharField(max_length=50)
     skin_float = models.FloatField(default=0.05)
