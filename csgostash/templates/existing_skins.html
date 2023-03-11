@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div> 
+    <div>
+        
+        
+        {%for weapon in weapons %}
+        <div>
+            <h1>{{weapon.id}} --<a href="/rifles/{{weapon_name}}/{{weapon.id}}">{{weapon.skin_name}}</a></h1>
+        </div>
+       
+        {% endfor %}
+    </div>    
+</div>
+
+
+
+{% endblock content %}

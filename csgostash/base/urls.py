@@ -12,7 +12,8 @@ urlpatterns = [
     path('stickers/', views.stickers, name="stickers"),
     path('heavy/', views.heavy, name="heavy"),
     path('gloves/', views.gloves, name="gloves"),
-    path('rifles/ak47', views.ak47, name="ak47"),
-    path('rifles/ak47/<int:pk>', views.current_rifle, name="current_rifle"),
+    path('rifles/<str:weapon>', views.existing_skins, name="existing_skins"),
+    path('rifles/<str:weapon>/<int:pk>', views.current_rifle, name="current_rifle"),
+    path('sell-item', views.sell_item, name='sell-item')
 
 ]
