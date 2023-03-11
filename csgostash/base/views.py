@@ -1,13 +1,8 @@
 from django.shortcuts import render
 from .models import Weapon
-# Create your views here.
+from django.http import HttpResponseNotFound
 
-job_title = [
-    "First Job",
-    "Second Job",
-    "Third Job",
-    "Fourth Job",
-]
+# Create your views here.
 
 
 def home(request):
@@ -37,16 +32,26 @@ def heavy(request):
 def gloves(request):
     return render(request, 'gloves.html')
 
-def ak47(request):
-    try:
-        weapons = Weapon.objects.all()
-        context = {'weapons': weapons}
-        return render(request, 'ak47.html', context)
-    except:
-        return render("Item not found!")
+def existing_skins(request, weapon):
+    
+        if weapon == 'a':
+            return HttpResponseNotFound("Item not found!")
+        
+        weapons = Weapon.objects.filter(skin_name__icontains = weapon)
+        weapon_name = weapons[0].skin_name.split("|")[0]
+        context = {'weapons': weapons, 'weapon_name': weapon_name}
+        return render(request, 'existing_skins.html', context)
+    
 
-def current_rifle(request, pk):
-    weapon_from_database = Weapon.objects.get(id=pk)
-    context = {'weapon': weapon_from_database}
-    return render(request, 'current_rifle.html', context)
+def current_rifle(request,weapon, pk):
+        weapon_from_database = Weapon.objects.filter(id=pk, skin_name__icontains = weapon)
+        
+        if len(weapon_from_database) == 0:
+            return HttpResponseNotFound("Item not found!")  
+        context = {'weapon': weapon_from_database.get()}
+        return render(request, 'current_rifle.html', context)
 
+
+def sell_item(request):
+     context = {}
+     return render(request, "sell.html", context)
