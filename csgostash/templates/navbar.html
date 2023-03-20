@@ -11,6 +11,22 @@
     <div class = "header-text-container">
         <div class = "upper-part">
             <h1 class = "header-text"> Welcome to our site!</h1>
+            
+            {% if request.user.is_authenticated %}
+            <a href= "{% url 'logout' %}" >Logout</a>
+            
+            {% else %}
+
+            <a href= "{% url 'login' %}" >Login</a>
+
+            {% endif %}
+
+            <div class = "search-bar">
+                <form class = "search-bar-form" method="GET" action ="{% url 'home' %}">
+                    <input class = "search-bar-size" type ="text" name="q" placeholder="Search Item..." />
+                </form>
+            </div>
+
         </div>
         <div class = "lower-part">
             <button onclick="location.href = '/rifles';" class = "skin-category" type="button">Rifles</button>
