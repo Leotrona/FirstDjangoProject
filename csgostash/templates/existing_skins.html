@@ -5,20 +5,13 @@
 
 {% block content %}
 
-<style>
-    .home-container {
-        display: grid;
-        grid-template-columns:
-    }
-</style>
-
 <div> 
     <div class='home-container'>
         
         
         {%for weapon in weapons %}
         <div>
-            <h1>{{weapon.id}} -- <a href="/rifles/{{weapon_name}}/{{weapon.id}}">{{weapon.skin_name}}</a> -- {{weapon.price|floatformat:2}}$ 
+            <h1><a href="/rifles/{{weapon.skin_name}}/{{weapon.id}}">{{weapon.skin_name}}</a> -- {{weapon.price|floatformat:2}}$ -- Posted {{weapon.created|timesince}} ago
                 
                 {%if request.user == weapon.seller %}
                 <a href="{% url 'update-item' weapon.id %}"> Edit Ad</a>
