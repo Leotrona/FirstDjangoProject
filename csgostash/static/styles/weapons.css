@@ -13,6 +13,12 @@
     height: auto;
 }
 
+
+#weapon-name {
+    text-align: center;
+}
+
+
 @media (max-width: 850px) {
     .container {
         display: grid;
