@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User   # change user to seller
 # Create your models here.
 
 class Ak47(models.Model):
@@ -23,6 +23,10 @@ WEAPON_TYPES = (
     ('smg','SMG'),
 )
 
+class Customer(User):
+    rating = models.FloatField(default=5.00)
+    rated_from = models.IntegerField(default=0)
+    favorites = models.ManyToManyField('Weapon')
 
 
 class Weapon(models.Model):
@@ -43,3 +47,4 @@ class Weapon(models.Model):
 
     def __str__(self):
         return self.skin_name
+

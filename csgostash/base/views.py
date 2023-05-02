@@ -5,11 +5,22 @@ from .models import Weapon
 from django.http import HttpResponseNotFound, HttpResponse
 from .forms import WeaponForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
+
+WEAPON_TYPES = {
+    'rifles': ['AK-47', 'M4A4', 'AWP', 'M4A1-S', 'GALIL', 'AUG'],
+    'knives': ['BAYONET', 'KARAMBIT', 'M9-BAYONET', 'BUTTERFLY', 'SKELETON', 'FLIP'],
+    'pistols': ['DEAGLE', 'DUALS', 'GLOCK', 'P250', 'TEC9', 'USP-S'],
+    'smg': ['BIZON', 'MAC10', 'MP5', 'MP7', 'MP9', 'UMP45'],
+    'heavy': ['M249', 'MAG7', 'NEGEV', 'NOVA', 'SAWED', 'XM1014'],
+    'gloves': ['BROKEN', 'DRIVER', 'HAND', 'MOTO', 'SPECIALIST', 'SPORT'],
+    'cases': ['DREAMS', 'FALCHON', 'OPERATION', 'REVOLUTION', 'SOUVENIR', 'WEAPON'],
+    'stickers': ['ASTRALIS', 'CERQ', 'DEVICE', 'NIKO', 'NIP', 'S1MPLE'],
+}
 
 
 def loginPage(request):
@@ -31,12 +42,11 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request,user)
+            login(request, user)
             return redirect('home')
-        
+
         else:
             messages.error(request, "Username or Password does not exist!")
-
 
     context = {'page': page}
     return render(request, 'login_register.html', context)
@@ -63,53 +73,39 @@ def registerPage(request):
     return render(request, 'login_register.html', {'form': form})
 
 
+def weapons(request, type):
+
+    weapons = WEAPON_TYPES.get(type)
+    context = {'weapons': weapons, 'type': type}
+    return render(request, 'weapons_type.html', context)
+
+
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    weapons = Weapon.objects.filter(skin_name__icontains = q)
+    weapons = Weapon.objects.filter(skin_name__icontains=q)
     context = {'weapons': weapons}
     return render(request, 'existing_skins.html', context)
 
-def rifles(request):
-    return render(request, 'rifles.html')
 
-def knives(request):
-    return render(request, 'knives.html')
+def existing_skins(request, weapon, type):
 
-def pistols(request):
-    return render(request, 'pistols.html')
-
-def smg(request):
-    return render(request,'smg.html')
-
-def cases(request):
-    return render(request, 'cases.html')
-
-def stickers(request):
-    return render(request,'stickers.html')
-
-def heavy(request):
-    return render(request, 'heavy.html')
-
-def gloves(request):
-    return render(request, 'gloves.html')
-
-def existing_skins(request, weapon):
-    
         if weapon == 'a':
             return HttpResponseNotFound("Item not found!")
-        
-        weapons = Weapon.objects.filter(skin_name__icontains = weapon)
+
+        weapons = Weapon.objects.filter(skin_name__icontains=weapon)
         context = {'weapons': weapons, 'weapon_name': weapon}
         return render(request, 'existing_skins.html', context)
-    
 
-def current_rifle(request,weapon, pk):
-        weapon_from_database = Weapon.objects.filter(id=pk, skin_name__icontains = weapon)
-        
+
+def current_rifle(request, weapon, pk, type):
+        weapon_from_database = Weapon.objects.filter(
+            id=pk, skin_name__icontains=weapon)
+
         if len(weapon_from_database) == 0:
-            return HttpResponseNotFound("Item not found!")  
+            return HttpResponseNotFound("Item not found!")
         context = {'weapon': weapon_from_database.get()}
         return render(request, 'current_rifle.html', context)
+
 
 @login_required(login_url='/login')
 def sell_item(request):
@@ -117,8 +113,16 @@ def sell_item(request):
     if request.method == 'POST':
         form = WeaponForm(request.POST)
         if form.is_valid():
-             form.save()
-             return redirect('home')
+            full_name = form.fields['skin_name']
+            name = str(full_name).split("|")[0].lower()
+            for type in WEAPON_TYPES:
+                 if name in WEAPON_TYPES.get(type):
+                     form.fields['weapon_type'] = type
+                     break
+            weapon = form.save(commit=False)
+            weapon.seller = request.user
+            weapon.save()
+            return redirect('home')
 
     context = {'form': form}
     return render(request, 'sell.html', context)
