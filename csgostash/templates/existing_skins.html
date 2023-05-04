@@ -11,7 +11,7 @@
         
         {%for weapon in weapons %}
         <div>
-            <h1><a href="/rifles/{{weapon.skin_name}}/{{weapon.id}}">{{weapon.skin_name}}</a> -- {{weapon.price|floatformat:2}}$ -- Posted {{weapon.created|timesince}} ago
+            <h1><a href="/{{weapon.weapon_type}}/{{weapon.skin_name}}/{{weapon.id}}">{{weapon.skin_name}}</a> -- {{weapon.price|floatformat:2}}$ -- Posted {{weapon.created|timesince}} ago
                 
                 {%if request.user == weapon.seller %}
                 <a href="{% url 'update-item' weapon.id %}"> Edit Ad</a>

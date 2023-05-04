@@ -64,7 +64,7 @@ def registerPage(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.username = user.username.lower()
+           
             user.save()
             login(request, user)
             return redirect('home')
@@ -107,11 +107,11 @@ def current_rifle(request, weapon, pk, type):
         return render(request, 'current_rifle.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def sell_item(request):
     form = WeaponForm()
     if request.method == 'POST':
-        form = WeaponForm(request.POST)
+        form = WeaponForm(request.POST, request.FILES)
         if form.is_valid():
             full_name = form.fields['skin_name']
             name = str(full_name).split("|")[0].lower()
@@ -128,7 +128,7 @@ def sell_item(request):
     return render(request, 'sell.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def update_item(request, pk):
     weapon = Weapon.objects.get(id=pk)
     form = WeaponForm(instance=weapon)
@@ -137,7 +137,7 @@ def update_item(request, pk):
         return HttpResponse('Cannot edit this Ad!')
 
     if request.method == 'POST':
-        form = WeaponForm(request.POST, instance=weapon)
+        form = WeaponForm(request.POST, request.FILES ,instance=weapon)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -146,7 +146,7 @@ def update_item(request, pk):
     return render(request, 'sell.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def delete_item(request, pk):
     item = Weapon.objects.get(id=pk)
 
