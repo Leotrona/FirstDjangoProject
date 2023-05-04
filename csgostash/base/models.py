@@ -1,3 +1,4 @@
+from typing import Optional, Set
 from django.db import models
 from django.contrib.auth.models import User   # change user to seller
 # Create your models here.
@@ -23,11 +24,7 @@ WEAPON_TYPES = (
     ('smg','SMG'),
 )
 
-class Customer(User):
-    rating = models.FloatField(default=5.00)
-    rated_from = models.IntegerField(default=0)
-    favorites = models.ManyToManyField('Weapon')
-
+    
 
 class Weapon(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -40,11 +37,12 @@ class Weapon(models.Model):
     nametag = models.CharField(max_length=50, null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    
+    weapon_image = models.ImageField(null= True, blank= True, upload_to='images/')
     
     class Meta:
         ordering = ['price', 'skin_name']
 
     def __str__(self):
         return self.skin_name
+
 

@@ -9,5 +9,12 @@
     <h1>{{weapon}} -- {{weapon.price|floatformat:2}}$</h1>    
 </div>
 
+<br>
+
+{% if weapon.weapon_image %}
+
+<img src= '{{weapon.weapon_image.url}}' width = 250>
+
+{% endif %}
 
 {% endblock content %}
